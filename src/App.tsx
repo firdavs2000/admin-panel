@@ -1,14 +1,14 @@
 
-import './App.css'
-import { Header } from './widgets/Header'
+
+import { LoginPage } from './pages/LoginPage'
+
 
 function App() {
   
 
   return (
     <>
-     <App/>
-     <Header/>
+   <LoginPage/>
     </>
   )
 }

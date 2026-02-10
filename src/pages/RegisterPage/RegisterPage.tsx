@@ -1,51 +1,35 @@
-
 import { useForm } from "react-hook-form";
-import AuthLayout from "../../layouts/Auth/AuthLayout";
 
-export const LoginPage = () => {
+export const RegisterPage = () => {
   const { register,  // maydoni ro'yhatdan o'tkazishni imkonini beradi
           handleSubmit  //formani tasdiqlovchi funksiya
-        } = useForm()
-
-
+        } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
-
   return (
-    <AuthLayout>
-      <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+    <div>
+      <h2>Register</h2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           span="Your Username"
           type="text"
           holder="Username"
-            register={register('username', {
-              required: "Username is required"
-            })}
-           
+          {...register("username", { required: true })}
         />
 
         <input
           span="Your Password"
           type="password"
           holder="Password"
-          register={register('password', {
-              required: "Password is required",
-              minLength: {
-                value: 8,
-                message: "Minimum 8 symbols"
-              }
-            })}
+          {...register("password", { required: true })}
         />
 
         <button type="submit">Login</button>
       </form>
-    </AuthLayout>
+    </div>
   );
 };
-
-
