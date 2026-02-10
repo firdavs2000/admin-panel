@@ -1,51 +1,30 @@
-
+// src/pages/auth-login/ui/AuthLogin.jsx
 import { useForm } from "react-hook-form";
-import AuthLayout from "../../layouts/Auth/AuthLayout";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../processes/auth/useAuth";
 
-export const LoginPage = () => {
-  const { register,  // maydoni ro'yhatdan o'tkazishni imkonini beradi
-          handleSubmit  //formani tasdiqlovchi funksiya
-        } = useForm()
-
-
+export default function AuthLogin() {
+  const { register, handleSubmit } = useForm();
+  const login = useAuth((s) => s.login);
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
+    if (data.email === "admin" && data.password === "1234") {
+      login("fake-jwt-token");
+      navigate("/");
+    } else {
+      alert("Login yoki parol xato");
+    }
   };
 
-
   return (
-    <AuthLayout>
-      <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-80">
+      <h2 className="text-2xl font-bold text-center">Admin Login</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          span="Your Username"
-          type="text"
-          holder="Username"
-            register={register('username', {
-              required: "Username is required"
-            })}
-           
-        />
+      <input {...register("email")} placeholder="Login" className="w-full border p-2 rounded" />
+      <input type="password" {...register("password")} placeholder="Parol" className="w-full border p-2 rounded" />
 
-        <input
-          span="Your Password"
-          type="password"
-          holder="Password"
-          register={register('password', {
-              required: "Password is required",
-              minLength: {
-                value: 8,
-                message: "Minimum 8 symbols"
-              }
-            })}
-        />
-
-        <button type="submit">Login</button>
-      </form>
-    </AuthLayout>
+      <button className="w-full bg-black text-white p-2 rounded">Kirish</button>
+    </form>
   );
-};
-
-
+}
