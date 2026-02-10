@@ -2,14 +2,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 
-import AuthLayout from "../shared/AuthLayouts";
-import MainLayout from "../shared/MainLayouts";
 
-import AuthLogin from "../pages/AuthLogin/AuthLogin";
-import Dashboard from "../pages/DashBoard/DashBoard";
-import Products from "../pages/products/Products";
-import Users from "../pages/users/Users";
-import NotFound from "../pages/NotFound/NotFound";
+import MainLayout from "../shared/Layouts";
+
+import AuthLogin from "../pages/AuthLogin";
+import Dashboard from "../pages/DashBoard";
+import Products from "../pages/Products";
+import Users from "../pages/Users";
+import NotFound from "../pages/NotFound";
 
 export const router = createBrowserRouter([
   {

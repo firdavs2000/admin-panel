@@ -1,7 +1,7 @@
 // src/pages/auth-login/ui/AuthLogin.jsx
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../processes/auth/useAuth";
+import { useAuth } from "../processes/auth/useAuth";
 
 export default function AuthLogin() {
   const { register, handleSubmit } = useForm();
