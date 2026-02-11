@@ -1,9 +1,3 @@
-const Users = () => {
-  return (
-    <div>
-     
-    </div>
-  );
-};
-
-export default Users;
+export default function Users() {
+  return <h1 className="text-2xl">Users Page</h1>;
+}

@@ -1,12 +1,11 @@
-// router.tsx yoki router.jsx
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 
-
-import MainLayout from "../shared/Layouts";
+import MainLayout from "../shared/Mainlayouts";
+import AuthLayout from "../shared/Authlayout";
 
 import AuthLogin from "../pages/AuthLogin";
-import Dashboard from "../pages/DashBoard";
+import Dashboard from "../pages/Dashboard";
 import Products from "../pages/Products";
 import Users from "../pages/Users";
 import NotFound from "../pages/NotFound";
@@ -14,9 +13,9 @@ import NotFound from "../pages/NotFound";
 export const router = createBrowserRouter([
   {
     path: "/auth",
-    element: <AuthLayout />, // Layout kerak
+    element: <AuthLayout />,
     children: [
-      { path: "login", element: <AuthLogin /> } // element yozish shart!
+      { path: "login", element: <AuthLogin /> }
     ]
   },
   {
@@ -27,7 +26,7 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { index: true, element: <Dashboard /> }, // index uchun ham element kerak
+      { index: true, element: <Dashboard /> },
       { path: "products", element: <Products /> },
       { path: "users", element: <Users /> }
     ]

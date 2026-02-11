@@ -1,13 +1,30 @@
 import { create } from "zustand";
 
-export const useAuth = create((set) => ({
-  token: localStorage.getItem("token"),
-  login: (token) => {
-    localStorage.setItem("token", token);
-    set({ token });
+interface AuthState {
+  user: { email: string } | null;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
+}
+
+export const useAuth = create<AuthState>((set) => ({
+  user: null,
+
+  login: async (email, password) => {
+    return new Promise<void>((resolve, reject) => {
+      setTimeout(() => {
+        if (email === "admin@gmail.com" && password === "123456") {
+          set({ user: { email } });
+          localStorage.setItem("access", "fake-jwt-token");
+          resolve();
+        } else {
+          reject(new Error("Email yoki parol noto‘g‘ri"));
+        }
+      }, 500);
+    });
   },
+
   logout: () => {
-    localStorage.removeItem("token");
-    set({ token: null });
+    set({ user: null });
+    localStorage.removeItem("access");
   }
 }));
